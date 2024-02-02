@@ -1,14 +1,25 @@
+import * as stylex from '@stylexjs/stylex';
 import { useState } from 'react';
 import viteLogo from '/vite.svg';
 import './App.css';
 import reactLogo from './assets/react.svg';
+import { colors } from './tokens.stylex';
+
+const styles = stylex.create({
+  bg: {
+    backgroundColor: {
+      default: colors.primaryText,
+      ':hover': 'blue',
+    },
+  },
+});
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <>
-      <div>
+      <div {...stylex.props(styles.bg)}>
         <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
