@@ -1,50 +1,49 @@
-import * as stylex from '@stylexjs/stylex';
-import { useState } from 'react';
-import viteLogo from '/vite.svg';
+import { useEffect } from 'react';
 import './App.css';
-import reactLogo from './assets/react.svg';
-import { colors } from './tokens.stylex';
-
-const styles = stylex.create({
-  bg: {
-    backgroundColor: {
-      default: colors.primaryText,
-      ':hover': 'blue',
-    },
-  },
-});
+import { supabase } from './server/provider';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const login = async () => {
+    const { data } = await supabase.auth.signInWithOAuth({
+      provider: 'github',
+    });
+
+    console.log(data);
+  };
+
+  const logout = async () => {
+    await supabase.auth.signOut();
+  };
+
+  useEffect(() => {
+    const getSession = async () => {
+      const session = await supabase.auth.getSession();
+
+      console.log('session: ', session.data.session?.user);
+    };
+
+    getSession();
+
+    supabase.auth.onAuthStateChange((event) => {
+      switch (event) {
+        case 'SIGNED_IN':
+          break;
+        case 'SIGNED_OUT':
+          console.log('로그아웃');
+        // window.location.reload();
+      }
+    });
+  }, []);
 
   return (
-    <>
-      <div {...stylex.props(styles.bg)}>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button
-          type="button"
-          onClick={() => {
-            setCount((count) => count + 1);
-          }}
-        >
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <main>
+      <button type="button" onClick={login}>
+        로그인
+      </button>
+      <button type="button" onClick={logout}>
+        로그아웃
+      </button>
+    </main>
   );
 }
 

@@ -7,3 +7,5 @@ reviewers:
   - JayeHa
 
 numberOfReviewers: 0
+
+runOnDraft: true
