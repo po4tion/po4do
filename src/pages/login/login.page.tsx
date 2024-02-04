@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
-import './App.css';
-import { supabase } from './server/provider';
+import { Link, Outlet, useOutlet } from 'react-router-dom';
+import { supabase } from '../../server/provider';
+import { Container } from './components';
 
-function App() {
+export const LoginPage = () => {
   const login = async () => {
     const { data } = await supabase.auth.signInWithOAuth({
       provider: 'github',
@@ -24,7 +25,7 @@ function App() {
 
     getSession();
 
-    supabase.auth.onAuthStateChange((event) => {
+    const { data: authListener } = supabase.auth.onAuthStateChange((event) => {
       switch (event) {
         case 'SIGNED_IN':
           break;
@@ -33,18 +34,21 @@ function App() {
         // window.location.reload();
       }
     });
+
+    return () => {
+      authListener.subscription.unsubscribe();
+    };
   }, []);
 
   return (
-    <main>
+    <Container>
       <button type="button" onClick={login}>
         로그인
       </button>
       <button type="button" onClick={logout}>
         로그아웃
       </button>
-    </main>
+      <Outlet />
+    </Container>
   );
-}
-
-export default App;
+};
