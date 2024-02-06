@@ -1,36 +1,13 @@
-import { useEffect } from 'react';
+import { useAuthStateChange } from '../../hooks/auth/useAuthStateChange';
 import { useLogin } from '../../server/auth/useLogin';
-import { supabase } from '../../server/provider';
 import { Github } from './assets/Github';
 import { Card } from './components/Card';
 import { Container } from './components/Container';
 import { LoginButton } from './components/LoginButton';
 
 export const LoginPage = () => {
-  const { login } = useLogin();
-
-  useEffect(() => {
-    const getSession = async () => {
-      const session = await supabase.auth.getSession();
-
-      console.log('session: ', session.data.session?.user);
-    };
-
-    getSession();
-
-    const { data: authListener } = supabase.auth.onAuthStateChange((event) => {
-      switch (event) {
-        case 'SIGNED_IN':
-          break;
-        case 'SIGNED_OUT':
-          window.location.reload();
-      }
-    });
-
-    return () => {
-      authListener.subscription.unsubscribe();
-    };
-  }, []);
+  const { mutate: executeLogin } = useLogin();
+  useAuthStateChange();
 
   return (
     <Container>
@@ -38,7 +15,7 @@ export const LoginPage = () => {
         <Card.Header>Join us!</Card.Header>
 
         <Card.Content>
-          <LoginButton onClick={login}>
+          <LoginButton onClick={() => executeLogin('github')}>
             <Github />
             Login with GitHub
           </LoginButton>

@@ -1,13 +1,17 @@
+import type { Provider } from '@supabase/supabase-js';
+import { useMutation } from '@tanstack/react-query';
 import { supabase } from '../provider';
 
+const loginGithub = async (provider: Provider) => {
+  const { data } = await supabase.auth.signInWithOAuth({
+    provider,
+  });
+
+  return data;
+};
+
 export const useLogin = () => {
-  const login = async () => {
-    const { data } = await supabase.auth.signInWithOAuth({
-      provider: 'github',
-    });
-
-    return data;
-  };
-
-  return { login };
+  return useMutation({
+    mutationFn: loginGithub,
+  });
 };
