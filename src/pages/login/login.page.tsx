@@ -1,5 +1,5 @@
 import { useAuthStateChange } from '../../hooks/auth/useAuthStateChange';
-import { useLogin } from '../../server/auth/useLogin';
+import { useLogin } from '../../server/auth/mutations';
 import { Github } from './assets/Github';
 import { Card } from './components/Card';
 import { Container } from './components/Container';
