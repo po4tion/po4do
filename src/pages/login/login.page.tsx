@@ -1,8 +1,7 @@
 import { useAuthStateChange } from '../../hooks/auth/useAuthStateChange';
-import { useLogin } from '../../server/auth/useLogin';
-import { Github } from './assets/Github';
+import { useLogin } from '../../server/auth/mutations';
+import { Github } from './assets/svgs/Github';
 import { Card } from './components/Card';
-import { Container } from './components/Container';
 import { LoginButton } from './components/LoginButton';
 
 export const LoginPage = () => {
@@ -10,7 +9,7 @@ export const LoginPage = () => {
   useAuthStateChange();
 
   return (
-    <Container>
+    <main>
       <Card>
         <Card.Header>Join us!</Card.Header>
 
@@ -26,6 +25,6 @@ export const LoginPage = () => {
           </Card.Footer>
         </Card.Content>
       </Card>
-    </Container>
+    </main>
   );
 };

@@ -23,7 +23,7 @@ const cardHeaderStyles = create({
 
 export const Header = ({ children }: PropsWithChildren) => {
   return (
-    <header {...props(cardHeaderStyles.header)}>
+    <div {...props(cardHeaderStyles.header)}>
       <img
         {...props(cardHeaderStyles.logo)}
         src="/logo192.png"
@@ -31,6 +31,6 @@ export const Header = ({ children }: PropsWithChildren) => {
       />
 
       <h2 {...props(cardHeaderStyles.title)}>{children}</h2>
-    </header>
+    </div>
   );
 };

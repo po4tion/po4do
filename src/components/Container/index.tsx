@@ -14,5 +14,5 @@ const containerStyles = create({
 });
 
 export const Container = ({ children }: PropsWithChildren) => {
-  return <main {...props(containerStyles.main)}>{children}</main>;
+  return <div {...props(containerStyles.main)}>{children}</div>;
 };
