@@ -3,16 +3,16 @@ import type { PropsWithChildren } from 'react';
 
 const containerStyles = create({
   main: {
+    width: '25rem',
+
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-
-    minHeight: '100vh',
-
-    background: 'hsl(220deg 14.3% 95.9%)',
+    flexDirection: 'column',
+    rowGap: '2rem',
   },
 });
 
 export const Container = ({ children }: PropsWithChildren) => {
-  return <div {...props(containerStyles.main)}>{children}</div>;
+  return <main {...props(containerStyles.main)}>{children}</main>;
 };

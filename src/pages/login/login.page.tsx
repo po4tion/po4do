@@ -9,20 +9,22 @@ export const LoginPage = () => {
   useAuthStateChange();
 
   return (
-    <Card>
-      <Card.Header>Join us!</Card.Header>
+    <main>
+      <Card>
+        <Card.Header>Join us!</Card.Header>
 
-      <Card.Content>
-        <LoginButton onClick={() => executeLogin('github')}>
-          <Github />
-          Login with GitHub
-        </LoginButton>
+        <Card.Content>
+          <LoginButton onClick={() => executeLogin('github')}>
+            <Github />
+            Login with GitHub
+          </LoginButton>
 
-        <Card.Footer>
-          By logging in with GitHub, you agree to our Terms of Service and
-          Privacy Policy.
-        </Card.Footer>
-      </Card.Content>
-    </Card>
+          <Card.Footer>
+            By logging in with GitHub, you agree to our Terms of Service and
+            Privacy Policy.
+          </Card.Footer>
+        </Card.Content>
+      </Card>
+    </main>
   );
 };

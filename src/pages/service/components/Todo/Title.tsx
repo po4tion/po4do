@@ -3,12 +3,11 @@ import type { PropsWithChildren } from 'react';
 
 const titleStyles = create({
   title: {
-    fontSize: '2rem',
+    fontSize: '1.2rem',
     fontWeight: 700,
-    letterSpacing: '0.3rem',
   },
 });
 
 export const Title = ({ children }: PropsWithChildren) => {
-  return <h2 {...props(titleStyles.title)}>{children}</h2>;
+  return <h3 {...props(titleStyles.title)}>{children}</h3>;
 };
