@@ -6,6 +6,8 @@ export type Json =
   | { [key: string]: Json | undefined }
   | Json[];
 
+export type Status = 'pending' | 'progress' | 'done';
+
 export type Database = {
   public: {
     Tables: {
@@ -14,7 +16,7 @@ export type Database = {
           created_at: string;
           description: string | null;
           id: number;
-          status: string;
+          status: Status;
           updated_at: string;
           userId: string;
         };
@@ -22,7 +24,7 @@ export type Database = {
           created_at?: string;
           description?: string | null;
           id?: number;
-          status?: string;
+          status?: Status;
           updated_at?: string;
           userId: string;
         };
@@ -30,7 +32,7 @@ export type Database = {
           created_at?: string;
           description?: string | null;
           id?: number;
-          status?: string;
+          status?: Status;
           updated_at?: string;
           userId?: string;
         };
