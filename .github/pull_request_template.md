@@ -9,7 +9,7 @@ related # (issue)
 Please delete options that are not relevant.
 
 - [ ] build (Install or delete or Setting modules)
-- [ ] chore (Update features)
+- [ ] chore (New or Update excluding the "src")
 - [ ] docs (Delete, modify, and add to a document)
-- [ ] feat (New features)
+- [ ] feat (New or Update features)
 - [ ] fix (Fix a bug)
