@@ -18,6 +18,7 @@ export const useAuthStateChange = () => {
 
   useEffect(() => {
     const { data: authListener } = supabase.auth.onAuthStateChange((event) => {
+      console.log(event);
       navigate(AUTH_CHANGE_EVENT[event]);
     });
 

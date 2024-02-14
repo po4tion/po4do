@@ -18,7 +18,8 @@ const getTodos = async ({ userId, createdAt }: Parameters) => {
     .select('*')
     .eq('userId', userId)
     .gte('created_at', `${createdAt} 00:00`)
-    .lte('created_at', `${createdAt} 23:59`);
+    .lte('created_at', `${createdAt} 23:59`)
+    .order('updated_at', { ascending: false });
 
   return todos;
 };
@@ -28,7 +29,7 @@ export const useGetTodos = (parameters: Parameters) => {
 
   return useQuery({
     queryFn: () => getTodos(parameters),
-    queryKey: TODOS_KEYS.todos<Parameters>(parameters),
+    queryKey: TODOS_KEYS.todos(parameters),
     enabled: isEnabled,
   });
 };
