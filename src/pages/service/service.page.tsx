@@ -1,10 +1,10 @@
+import type { Database, Status } from '@/server/database.types';
+import { useCreateTodo } from '@/server/todos/mutations';
+import { useRemoveTodo } from '@/server/todos/mutations/useRemoveTodo';
+import { useUpdateTodo } from '@/server/todos/mutations/useUpdateTodo';
+import { TODOS_KEYS } from '@/server/todos/queries/keys';
 import { useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
-import type { Database, Status } from '../../server/database.types';
-import { useCreateTodo } from '../../server/todos/mutations';
-import { useRemoveTodo } from '../../server/todos/mutations/useRemoveTodo';
-import { useUpdateTodo } from '../../server/todos/mutations/useUpdateTodo';
-import { TODOS_KEYS } from '../../server/todos/queries/keys';
 import { Container } from './components/Container';
 import { Title } from './components/Title';
 import { Todo } from './components/Todo';

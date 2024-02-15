@@ -1,5 +1,5 @@
+import type { Database } from '@/server/database.types';
 import { create, props } from '@stylexjs/stylex';
-import type { Database } from '../../../../server/database.types';
 
 const listStyles = create({
   list: {

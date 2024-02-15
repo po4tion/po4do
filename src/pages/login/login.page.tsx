@@ -1,5 +1,5 @@
-import { useAuthStateChange } from '../../hooks/auth/useAuthStateChange';
-import { useLogin } from '../../server/auth/mutations';
+import { useAuthStateChange } from '@/hooks/auth/useAuthStateChange';
+import { useLogin } from '@/server/auth/mutations';
 import { Github } from './assets/svgs/Github';
 import { Card } from './components/Card';
 import { LoginButton } from './components/LoginButton';

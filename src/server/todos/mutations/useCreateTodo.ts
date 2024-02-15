@@ -1,6 +1,6 @@
+import type { Database } from '@/server/database.types';
+import { supabase } from '@/server/provider';
 import { useMutation } from '@tanstack/react-query';
-import type { Database } from '../../database.types';
-import { supabase } from '../../provider';
 
 const createTodo = async (
   todo: Database['public']['Tables']['todos']['Insert'],

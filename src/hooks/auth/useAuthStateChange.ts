@@ -1,7 +1,7 @@
+import { supabase } from '@/server/provider';
 import type { AuthChangeEvent } from '@supabase/supabase-js';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { supabase } from '../../server/provider';
 
 const AUTH_CHANGE_EVENT: Record<AuthChangeEvent, `/${string}`> = {
   SIGNED_IN: '/service',

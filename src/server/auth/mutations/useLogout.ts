@@ -1,5 +1,5 @@
+import { supabase } from '@/server/provider';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { supabase } from '../../provider';
 import { AUTH_KEYS } from '../queries/keys';
 
 const logout = async () => {

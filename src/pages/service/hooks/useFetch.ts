@@ -1,5 +1,5 @@
-import { useUserSession } from '../../../server/auth/queries';
-import { useGetTodos } from '../../../server/todos/queries';
+import { useUserSession } from '@/server/auth/queries';
+import { useGetTodos } from '@/server/todos/queries';
 import { getTodayDate } from '../utils/getTodayDate';
 
 export const useFetch = () => {

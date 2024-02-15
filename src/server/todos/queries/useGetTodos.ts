@@ -1,6 +1,6 @@
+import { supabase } from '@/server/provider';
 import type { User } from '@supabase/supabase-js';
 import { useQuery } from '@tanstack/react-query';
-import { supabase } from '../../provider';
 import { TODOS_KEYS } from './keys';
 
 type Parameters = {
