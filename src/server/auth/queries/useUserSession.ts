@@ -1,5 +1,5 @@
+import { supabase } from '@/server/provider';
 import { useQuery } from '@tanstack/react-query';
-import { supabase } from '../../provider';
 import { AUTH_KEYS } from './keys';
 
 const getSession = async () => {
