@@ -1,5 +1,6 @@
 import { create, props } from '@stylexjs/stylex';
 import type { PropsWithChildren } from 'react';
+import { weight } from '../../../../assets/tokens/font.stylex';
 
 const cardHeaderStyles = create({
   header: {
@@ -17,7 +18,7 @@ const cardHeaderStyles = create({
   },
   title: {
     fontSize: '1.5rem',
-    fontWeight: 700,
+    fontWeight: weight.bold,
   },
 });
 

@@ -1,10 +1,11 @@
 import { create, props } from '@stylexjs/stylex';
 import type { PropsWithChildren } from 'react';
+import { weight } from '../../../../assets/tokens/font.stylex';
 
 const titleStyles = create({
   title: {
     fontSize: '2rem',
-    fontWeight: 700,
+    fontWeight: weight.bold,
     letterSpacing: '0.3rem',
   },
 });
