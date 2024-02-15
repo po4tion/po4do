@@ -1,5 +1,6 @@
 import { create, props } from '@stylexjs/stylex';
 import type { ButtonHTMLAttributes, PropsWithChildren } from 'react';
+import { weight } from '../../../../assets/tokens/font.stylex';
 
 const loginButtonStyles = create({
   login: {
@@ -18,7 +19,7 @@ const loginButtonStyles = create({
 
     color: 'hsl(0deg 0% 100%)',
     fontSize: '1rem',
-    fontWeight: 500,
+    fontWeight: weight.regular,
 
     cursor: 'pointer',
     scale: {

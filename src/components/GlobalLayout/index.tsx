@@ -1,7 +1,7 @@
 import { create, props } from '@stylexjs/stylex';
 import type { PropsWithChildren } from 'react';
 
-const containerStyles = create({
+const globalLayoutStyles = create({
   main: {
     display: 'flex',
     justifyContent: 'center',
@@ -13,6 +13,6 @@ const containerStyles = create({
   },
 });
 
-export const Container = ({ children }: PropsWithChildren) => {
-  return <div {...props(containerStyles.main)}>{children}</div>;
+export const GlobalLayout = ({ children }: PropsWithChildren) => {
+  return <div {...props(globalLayoutStyles.main)}>{children}</div>;
 };

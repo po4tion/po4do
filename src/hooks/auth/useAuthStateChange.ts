@@ -7,10 +7,10 @@ const AUTH_CHANGE_EVENT: Record<AuthChangeEvent, `/${string}`> = {
   SIGNED_IN: '/service',
   SIGNED_OUT: '/',
   INITIAL_SESSION: '/',
-  MFA_CHALLENGE_VERIFIED: '/error',
-  PASSWORD_RECOVERY: '/error',
-  TOKEN_REFRESHED: '/error',
-  USER_UPDATED: '/error',
+  TOKEN_REFRESHED: '/',
+  USER_UPDATED: '/',
+  MFA_CHALLENGE_VERIFIED: '/',
+  PASSWORD_RECOVERY: '/',
 };
 
 export const useAuthStateChange = () => {
