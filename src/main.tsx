@@ -2,9 +2,9 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
-import { Container } from './components/Container/index.tsx';
-import { router } from './constants/router.tsx';
-import './index.css';
+import './assets/reset.css';
+import { Container } from './components/Container';
+import { router } from './constants/router';
 
 const queryClient = new QueryClient({
   defaultOptions: {
