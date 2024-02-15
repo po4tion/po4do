@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
 import './assets/reset.css';
-import { Container } from './components/Container';
+import { GlobalLayout } from './components/GlobalLayout';
 import { router } from './constants/router';
 
 const queryClient = new QueryClient({
@@ -20,9 +20,9 @@ const queryClient = new QueryClient({
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <Container>
+      <GlobalLayout>
         <RouterProvider router={router} />
-      </Container>
+      </GlobalLayout>
     </QueryClientProvider>
   </React.StrictMode>,
 );
