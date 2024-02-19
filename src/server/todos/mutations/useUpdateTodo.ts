@@ -1,11 +1,7 @@
-import type { Database } from '@/server/database.types';
 import { supabase } from '@/server/provider';
 import { useMutation } from '@tanstack/react-query';
 
-type Parameters = {
-  status: Database['public']['Tables']['todos']['Update']['status'];
-  id: Database['public']['Tables']['todos']['Update']['id'];
-};
+type Parameters = Pick<Database.TablesUpdate<'todos'>, 'id' | 'status'>;
 
 const updateTodo = async ({ id, status }: Parameters) => {
   try {

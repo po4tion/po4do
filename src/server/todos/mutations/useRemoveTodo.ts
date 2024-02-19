@@ -1,10 +1,7 @@
-import type { Database } from '@/server/database.types';
 import { supabase } from '@/server/provider';
 import { useMutation } from '@tanstack/react-query';
 
-const removeTodo = async (
-  id: Database['public']['Tables']['todos']['Update']['id'],
-) => {
+const removeTodo = async (id: Database.TablesUpdate<'todos'>['id']) => {
   try {
     if (!id) {
       throw new Error('id가 비어있습니다.');

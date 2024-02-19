@@ -1,4 +1,3 @@
-import type { Database, Status } from '@/server/database.types';
 import { useCreateTodo } from '@/server/todos/mutations';
 import { useRemoveTodo } from '@/server/todos/mutations/useRemoveTodo';
 import { useUpdateTodo } from '@/server/todos/mutations/useUpdateTodo';
@@ -24,7 +23,7 @@ export const ServicePage = () => {
       return;
     }
 
-    const newTodo: Database['public']['Tables']['todos']['Insert'] = {
+    const newTodo: Database.TablesInsert<'todos'> = {
       userId: user.id,
       created_at: getTodayDate(),
       description: todo,
@@ -43,18 +42,18 @@ export const ServicePage = () => {
   const { mutate: updateTodoMutate } = useUpdateTodo();
 
   const updateTodo = (
-    id: Database['public']['Tables']['todos']['Update']['id'],
-    status: Database['public']['Tables']['todos']['Update']['status'],
+    id: Database.TablesUpdate<'todos'>['id'],
+    status: Database.TablesUpdate<'todos'>['status'],
   ) => {
     if (!id) {
       alert('id 값이 유효하지 않습니다.');
       return;
     }
 
-    const updateStatusTodo: {
-      id: number;
-      status: Status;
-    } = {
+    const updateStatusTodo: Pick<
+      Database.TablesUpdate<'todos'>,
+      'id' | 'status'
+    > = {
       id,
       status: status === 'progress' ? 'done' : 'progress',
     };
@@ -70,9 +69,7 @@ export const ServicePage = () => {
 
   const { mutate: removeTodoMutate } = useRemoveTodo();
 
-  const removeTodo = (
-    id: Database['public']['Tables']['todos']['Update']['id'],
-  ) => {
+  const removeTodo = (id: Database.TablesUpdate<'todos'>['id']) => {
     removeTodoMutate(id, {
       onSuccess: () => {
         queryClient.invalidateQueries({

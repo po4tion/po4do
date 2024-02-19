@@ -13,3 +13,4 @@ Please delete options that are not relevant.
 - [ ] docs (Delete, modify, and add to a document)
 - [ ] feat (New or Update features)
 - [ ] fix (Fix a bug)
+- [ ] refactor (Reorganizing code without changing results)
