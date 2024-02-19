@@ -1,4 +1,3 @@
-import type { Database } from '@/server/database.types';
 import { create, props } from '@stylexjs/stylex';
 
 const listStyles = create({
@@ -50,12 +49,12 @@ const listStyles = create({
 });
 
 type Props = {
-  data: Array<Database['public']['Tables']['todos']['Row']>;
+  data: Array<Database.Tables<'todos'>>;
   update: (
-    id: Database['public']['Tables']['todos']['Update']['id'],
-    status: Database['public']['Tables']['todos']['Update']['status'],
+    id: Database.TablesUpdate<'todos'>['id'],
+    status: Database.TablesUpdate<'todos'>['status'],
   ) => void;
-  remove: (id: Database['public']['Tables']['todos']['Update']['id']) => void;
+  remove: (id: Database.TablesUpdate<'todos'>['id']) => void;
 };
 
 export const List = ({ data, update, remove }: Props) => {
