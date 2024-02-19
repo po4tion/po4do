@@ -1,12 +1,10 @@
+import { flex } from '@/styles/common/flex';
 import { create, props } from '@stylexjs/stylex';
 import type { PropsWithChildren } from 'react';
-import { weight } from '../../../../assets/tokens/font.stylex';
+import { weight } from '../../../../styles/tokens/font.stylex';
 
 const cardHeaderStyles = create({
   header: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
     flexDirection: 'column',
     rowGap: '1rem',
   },
@@ -24,7 +22,7 @@ const cardHeaderStyles = create({
 
 export const Header = ({ children }: PropsWithChildren) => {
   return (
-    <div {...props(cardHeaderStyles.header)}>
+    <div {...props(cardHeaderStyles.header, flex.center)}>
       <img
         {...props(cardHeaderStyles.logo)}
         src="/logo192.png"

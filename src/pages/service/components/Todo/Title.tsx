@@ -1,6 +1,6 @@
 import { create, props } from '@stylexjs/stylex';
 import type { PropsWithChildren } from 'react';
-import { weight } from '../../../../assets/tokens/font.stylex';
+import { weight } from '../../../../styles/tokens/font.stylex';
 
 const titleStyles = create({
   title: {
