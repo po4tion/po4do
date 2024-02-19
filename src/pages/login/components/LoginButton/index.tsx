@@ -1,15 +1,13 @@
+import { flex } from '@/styles/common/flex';
 import { create, props } from '@stylexjs/stylex';
 import type { ButtonHTMLAttributes, PropsWithChildren } from 'react';
-import { weight } from '../../../../assets/tokens/font.stylex';
+import { weight } from '../../../../styles/tokens/font.stylex';
 
 const loginButtonStyles = create({
   login: {
     width: '100%',
     aspectRatio: 8 / 1,
 
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
     columnGap: '0.5rem',
 
     borderWidth: 0,
@@ -34,7 +32,11 @@ export const LoginButton = ({
   ...rest
 }: PropsWithChildren<ButtonHTMLAttributes<HTMLButtonElement>>) => {
   return (
-    <button {...props(loginButtonStyles.login)} type="button" {...rest}>
+    <button
+      {...props(loginButtonStyles.login, flex.center)}
+      type="button"
+      {...rest}
+    >
       {children}
     </button>
   );

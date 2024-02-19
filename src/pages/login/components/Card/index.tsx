@@ -1,3 +1,4 @@
+import { flex } from '@/styles/common/flex';
 import { create, props } from '@stylexjs/stylex';
 import type { PropsWithChildren } from 'react';
 import { Content } from './Content';
@@ -6,9 +7,6 @@ import { Header } from './Header';
 
 const cardStyles = create({
   article: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
     flexDirection: 'column',
     rowGap: '2rem',
 
@@ -22,7 +20,9 @@ const cardStyles = create({
 });
 
 const Card = ({ children }: PropsWithChildren) => {
-  return <article {...props(cardStyles.article)}>{children}</article>;
+  return (
+    <article {...props(cardStyles.article, flex.center)}>{children}</article>
+  );
 };
 
 Card.Content = Content;
