@@ -21,7 +21,7 @@
     "lineWidth": 80
   },
   "organizeImports": {
-    "enabled": true
+    "enabled": false
   },
   "javascript": {
     "formatter": {

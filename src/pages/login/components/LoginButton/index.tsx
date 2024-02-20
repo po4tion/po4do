@@ -1,4 +1,4 @@
-import { flex } from '@/styles/common/flex';
+import { flex } from '@/styles/common';
 import { create, props } from '@stylexjs/stylex';
 import type { ButtonHTMLAttributes, PropsWithChildren } from 'react';
 import { weight } from '../../../../styles/tokens/font.stylex';

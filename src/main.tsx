@@ -1,8 +1,8 @@
+import '@/styles/css/reset.css';
 import { QueryClientProvider } from '@tanstack/react-query';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
-import './assets/css/reset.css';
 import { GlobalLayout } from './components/GlobalLayout';
 import { router } from './constants/router';
 import { queryClient } from './server/provider';

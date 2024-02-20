@@ -1,4 +1,4 @@
-import { flex } from '@/styles/common/flex';
+import { flex } from '@/styles/common';
 import { create, props } from '@stylexjs/stylex';
 import type { PropsWithChildren } from 'react';
 import { Content } from './Content';
