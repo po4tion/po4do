@@ -8,7 +8,7 @@ type Props = {
 
 export const Loading = forwardRef<HTMLDivElement, Props>(({ style }, ref) => {
   const { RiveComponent } = useRive({
-    src: 'loading.riv',
+    src: 'assets/rive/loading.riv',
     autoplay: true,
   });
 
