@@ -1,6 +1,6 @@
-import { flex } from '@/styles/common/flex';
+import { flex } from '@/styles/common';
 import { create, props } from '@stylexjs/stylex';
-import type { PropsWithChildren } from 'react';
+import { forwardRef, type PropsWithChildren } from 'react';
 
 const globalLayoutStyles = create({
   main: {
@@ -10,6 +10,12 @@ const globalLayoutStyles = create({
   },
 });
 
-export const GlobalLayout = ({ children }: PropsWithChildren) => {
-  return <div {...props(globalLayoutStyles.main, flex.center)}>{children}</div>;
-};
+export const GlobalLayout = forwardRef<HTMLDivElement, PropsWithChildren>(
+  ({ children }, ref) => {
+    return (
+      <div ref={ref} {...props(globalLayoutStyles.main, flex.center)}>
+        {children}
+      </div>
+    );
+  },
+);
