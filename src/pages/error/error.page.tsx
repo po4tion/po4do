@@ -3,10 +3,11 @@ import { create, props } from '@stylexjs/stylex';
 import { useNavigate } from 'react-router-dom';
 import { NavigationButtonGroup } from './components/NavigationButtonGroup';
 import { NotFound } from './components/NotFound';
+import { Title } from './components/Title';
 
 const errorStyles = create({
   container: {
-    width: '40rem',
+    width: '35rem',
   },
   notFound: {
     width: '100%',
@@ -23,7 +24,7 @@ export const ErrorPage = () => {
 
   return (
     <main {...props(errorStyles.container)}>
-      {/* Title 만들어야 함 */}
+      <Title>Oops! Something went wrong!</Title>
 
       <NotFound style={errorStyles.notFound} />
 
