@@ -1,5 +1,5 @@
 import { create, props } from '@stylexjs/stylex';
-import type { FormEventHandler, InputHTMLAttributes } from 'react';
+import { useRef, type FormEventHandler, type InputHTMLAttributes } from 'react';
 
 const writeStyles = create({
   form: {
@@ -27,14 +27,28 @@ type Props = {
 };
 
 export const Write = ({ create, onChange }: Props) => {
+  const ref = useRef<HTMLInputElement>(null);
+
   const onTodoSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
-    create();
+
+    try {
+      create();
+    } finally {
+      if (ref.current) {
+        ref.current.value = '';
+      }
+    }
   };
 
   return (
     <form onSubmit={onTodoSubmit} {...props(writeStyles.form)}>
-      <input type="text" onChange={onChange} {...props(writeStyles.input)} />
+      <input
+        ref={ref}
+        type="text"
+        onChange={onChange}
+        {...props(writeStyles.input)}
+      />
     </form>
   );
 };
