@@ -60,8 +60,6 @@ export const ServicePage = () => {
 
     updateTodoMutate(updateStatusTodo, {
       onSuccess: () => {
-        setTodo('');
-
         queryClient.invalidateQueries({
           queryKey: TODOS_KEYS.todos(queryKey),
         });
