@@ -1,5 +1,5 @@
 import { supabase } from '@/server/provider';
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { AUTH_KEYS } from './keys';
 
 const getSession = async () => {
@@ -9,7 +9,7 @@ const getSession = async () => {
 };
 
 export const useUserSession = () => {
-  return useQuery({
+  return useSuspenseQuery({
     queryFn: getSession,
     queryKey: AUTH_KEYS.userSession,
   });

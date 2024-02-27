@@ -1,3 +1,4 @@
+import { withSuspense } from '@/hocs/withSuspense';
 import { useCreateTodo } from '@/server/todos/mutations';
 import { useRemoveTodo } from '@/server/todos/mutations/useRemoveTodo';
 import { useUpdateTodo } from '@/server/todos/mutations/useUpdateTodo';
@@ -11,8 +12,8 @@ import { Write } from './components/Write';
 import { useFetch } from './hooks/useFetch';
 import { getTodayDate } from './utils/getTodayDate';
 
-export const ServicePage = () => {
-  const { todos, user, isLoading, queryKey } = useFetch();
+export const ServicePage = withSuspense(() => {
+  const { todos, user, queryKey } = useFetch();
   const queryClient = useQueryClient();
   const { mutate: createTodoMutate } = useCreateTodo();
   const [todo, setTodo] = useState('');
@@ -79,14 +80,6 @@ export const ServicePage = () => {
     });
   };
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (!todos || typeof todos === 'boolean') {
-    return <div>Empty data...</div>;
-  }
-
   return (
     <Container>
       <Title>Today</Title>
@@ -102,4 +95,4 @@ export const ServicePage = () => {
       </Todo>
     </Container>
   );
-};
+});
