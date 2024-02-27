@@ -11,7 +11,6 @@ export const queryClient = new QueryClient({
     queries: {
       retry: 3,
       staleTime: 60000,
-      placeholderData: true,
     },
   },
 });

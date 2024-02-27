@@ -9,6 +9,7 @@ const errorStyles = create({
   container: {
     width: '35rem',
   },
+
   notFound: {
     width: '100%',
     aspectRatio: 1 / 1,
