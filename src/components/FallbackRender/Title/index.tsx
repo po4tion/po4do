@@ -1,7 +1,7 @@
 import { flex } from '@/styles/common';
 import { create, props } from '@stylexjs/stylex';
 import type { PropsWithChildren } from 'react';
-import { weight } from '../../../../styles/tokens/font.stylex';
+import { weight } from '../../../styles/tokens/font.stylex';
 
 const titleStyles = create({
   heading: {
