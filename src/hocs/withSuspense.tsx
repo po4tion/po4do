@@ -1,7 +1,6 @@
 import { Loading } from '@/components/Loading';
 import { create } from '@stylexjs/stylex';
 import { Suspense, type FC, type ReactNode } from 'react';
-import { ErrorBoundary } from 'react-error-boundary';
 
 const suspenseFallback = create({
   loading: {
@@ -24,13 +23,11 @@ type WithSuspense = <P extends object>(
 export const withSuspense: WithSuspense =
   (Component, Fallback = <Loading width={suspenseFallback.loading} />) =>
   (props) => (
-    <ErrorBoundary fallback={<div>Something went wrong</div>}>
-      <Suspense
-        fallback={
-          typeof Fallback === 'function' ? <Fallback {...props} /> : Fallback
-        }
-      >
-        <Component {...props} />
-      </Suspense>
-    </ErrorBoundary>
+    <Suspense
+      fallback={
+        typeof Fallback === 'function' ? <Fallback {...props} /> : Fallback
+      }
+    >
+      <Component {...props} />
+    </Suspense>
   );

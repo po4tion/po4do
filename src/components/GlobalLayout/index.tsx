@@ -1,6 +1,9 @@
 import { flex } from '@/styles/common';
 import { create, props } from '@stylexjs/stylex';
-import { forwardRef, type PropsWithChildren } from 'react';
+import { forwardRef } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+import { Outlet } from 'react-router-dom';
+import { FallbackRender } from '../FallbackRender';
 
 const globalLayoutStyles = create({
   main: {
@@ -10,12 +13,12 @@ const globalLayoutStyles = create({
   },
 });
 
-export const GlobalLayout = forwardRef<HTMLDivElement, PropsWithChildren>(
-  ({ children }, ref) => {
-    return (
-      <div ref={ref} {...props(globalLayoutStyles.main, flex.center)}>
-        {children}
-      </div>
-    );
-  },
-);
+export const GlobalLayout = forwardRef<HTMLDivElement>((_, ref) => {
+  return (
+    <div ref={ref} {...props(globalLayoutStyles.main, flex.center)}>
+      <ErrorBoundary fallbackRender={FallbackRender}>
+        <Outlet />
+      </ErrorBoundary>
+    </div>
+  );
+});
