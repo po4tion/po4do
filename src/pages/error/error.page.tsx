@@ -1,5 +1,4 @@
 import { create, props } from '@stylexjs/stylex';
-import { useNavigate } from 'react-router-dom';
 
 const errorStyles = create({
   content: {
@@ -8,7 +7,5 @@ const errorStyles = create({
 });
 
 export const ErrorPage = () => {
-  const navigate = useNavigate();
-
   return <main {...props(errorStyles.content)}>Page not exist.</main>;
 };
