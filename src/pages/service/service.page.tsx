@@ -13,7 +13,7 @@ import { useFetch } from './hooks/useFetch';
 import { getTodayDate } from './utils/getTodayDate';
 
 export const ServicePage = withSuspense(() => {
-  const { todos, user, queryKey } = useFetch();
+  const { todos, getTodoParameters } = useFetch();
   const queryClient = useQueryClient();
   const { mutate: createTodoMutate } = useCreateTodo();
   const [todo, setTodo] = useState('');
@@ -34,7 +34,7 @@ export const ServicePage = withSuspense(() => {
     createTodoMutate(newTodo, {
       onSuccess: () => {
         queryClient.invalidateQueries({
-          queryKey: TODOS_KEYS.todos(queryKey),
+          queryKey: TODOS_KEYS.todos(getTodoParameters),
         });
       },
     });
@@ -62,7 +62,7 @@ export const ServicePage = withSuspense(() => {
     updateTodoMutate(updateStatusTodo, {
       onSuccess: () => {
         queryClient.invalidateQueries({
-          queryKey: TODOS_KEYS.todos(queryKey),
+          queryKey: TODOS_KEYS.todos(getTodoParameters),
         });
       },
     });
@@ -74,7 +74,7 @@ export const ServicePage = withSuspense(() => {
     removeTodoMutate(id, {
       onSuccess: () => {
         queryClient.invalidateQueries({
-          queryKey: TODOS_KEYS.todos(queryKey),
+          queryKey: TODOS_KEYS.todos(getTodoParameters),
         });
       },
     });

@@ -1,24 +1,15 @@
-import { useUserSession } from '@/server/auth/queries';
 import { useGetTodos } from '@/server/todos/queries';
 import { getTodayDate } from '../utils/getTodayDate';
 
 export const useFetch = () => {
-  const { data: user } = useUserSession();
-
-  if (!user) {
-    return { todos: [], user: null };
-  }
-
-  const queryKey = {
-    userId: user.id,
+  const getTodoParameters = {
     createdAt: getTodayDate(),
   };
 
-  const { data: todos } = useGetTodos(queryKey);
+  const { data: todos } = useGetTodos(getTodoParameters);
 
   return {
     todos,
-    user,
-    queryKey,
+    getTodoParameters,
   };
 };

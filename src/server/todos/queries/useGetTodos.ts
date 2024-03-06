@@ -21,10 +21,20 @@ const getTodos = async ({ userId, createdAt }: Parameters) => {
   return todos ?? [];
 };
 
-export const useGetTodos = (parameters: Parameters) => {
+export const useGetTodos = ({ createdAt }: Pick<Parameters, 'createdAt'>) => {
   const { data: user } = useUserSession();
+
+  if (!user) {
+    throw new Error('로그인이 필요한 기능입니다.');
+  }
+
+  const queryParameters: Parameters = {
+    userId: user.id,
+    createdAt,
+  };
+
   return useSuspenseQuery({
-    queryFn: () => getTodos(parameters),
-    queryKey: TODOS_KEYS.todos(parameters),
+    queryFn: () => getTodos(queryParameters),
+    queryKey: TODOS_KEYS.todos(queryParameters),
   });
 };
