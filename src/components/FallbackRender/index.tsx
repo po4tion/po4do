@@ -3,6 +3,7 @@ import type { FallbackProps } from 'react-error-boundary';
 import { Button, Link } from '../Button';
 import { NavigationButtonGroup } from './NavigationButtonGroup';
 import { NotFound } from './NotFound';
+import { Subtitle } from './Subtitle';
 import { Title } from './Title';
 
 const fallbackRenderStyles = create({
@@ -20,10 +21,14 @@ const fallbackRenderStyles = create({
   },
 });
 
-export const FallbackRender = ({ resetErrorBoundary }: FallbackProps) => {
+export const FallbackRender = ({
+  resetErrorBoundary,
+  error,
+}: FallbackProps) => {
   return (
     <main {...props(fallbackRenderStyles.container)}>
       <Title>Oops! Something went wrong!</Title>
+      <Subtitle>{error.message}</Subtitle>
 
       <NotFound style={fallbackRenderStyles.notFound} />
 

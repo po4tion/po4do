@@ -2,82 +2,39 @@ import { withSuspense } from '@/hocs/withSuspense';
 import { useCreateTodo } from '@/server/todos/mutations';
 import { useRemoveTodo } from '@/server/todos/mutations/useRemoveTodo';
 import { useUpdateTodo } from '@/server/todos/mutations/useUpdateTodo';
-import { TODOS_KEYS } from '@/server/todos/queries/keys';
-import { useQueryClient } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useGetTodos } from '@/server/todos/queries';
+import { useState, type ComponentProps } from 'react';
 import { Container } from './components/Container';
 import { Title } from './components/Title';
 import { Todo } from './components/Todo';
 import { Write } from './components/Write';
-import { useFetch } from './hooks/useFetch';
-import { getTodayDate } from './utils/getTodayDate';
 
 export const ServicePage = withSuspense(() => {
-  const { todos, user, queryKey } = useFetch();
-  const queryClient = useQueryClient();
-  const { mutate: createTodoMutate } = useCreateTodo();
+  const { data: todos } = useGetTodos();
   const [todo, setTodo] = useState('');
 
+  const { mutate: createTodoMutate } = useCreateTodo();
   const createTodo = () => {
-    if (!user) {
-      alert('로그인이 필요합니다');
-      return;
-    }
-
-    const newTodo: Database.TablesInsert<'todos'> = {
-      userId: user.id,
-      created_at: getTodayDate(),
+    createTodoMutate({
       description: todo,
       status: 'progress',
-    };
-
-    createTodoMutate(newTodo, {
-      onSuccess: () => {
-        queryClient.invalidateQueries({
-          queryKey: TODOS_KEYS.todos(queryKey),
-        });
-      },
     });
   };
 
   const { mutate: updateTodoMutate } = useUpdateTodo();
-
-  const updateTodo = (
-    id: Database.TablesUpdate<'todos'>['id'],
-    status: Database.TablesUpdate<'todos'>['status'],
+  const updateTodo: ComponentProps<typeof Todo.List>['update'] = (
+    id,
+    status,
   ) => {
-    if (!id) {
-      alert('id 값이 유효하지 않습니다.');
-      return;
-    }
-
-    const updateStatusTodo: Pick<
-      Database.TablesUpdate<'todos'>,
-      'id' | 'status'
-    > = {
+    updateTodoMutate({
       id,
       status: status === 'progress' ? 'done' : 'progress',
-    };
-
-    updateTodoMutate(updateStatusTodo, {
-      onSuccess: () => {
-        queryClient.invalidateQueries({
-          queryKey: TODOS_KEYS.todos(queryKey),
-        });
-      },
     });
   };
 
   const { mutate: removeTodoMutate } = useRemoveTodo();
-
-  const removeTodo = (id: Database.TablesUpdate<'todos'>['id']) => {
-    removeTodoMutate(id, {
-      onSuccess: () => {
-        queryClient.invalidateQueries({
-          queryKey: TODOS_KEYS.todos(queryKey),
-        });
-      },
-    });
+  const removeTodo: ComponentProps<typeof Todo.List>['remove'] = (id) => {
+    removeTodoMutate(id);
   };
 
   return (
