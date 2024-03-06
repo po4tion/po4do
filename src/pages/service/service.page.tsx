@@ -80,6 +80,8 @@ export const ServicePage = withSuspense(() => {
     });
   };
 
+  if (todos) throw new Error('에러 발생!');
+
   return (
     <Container>
       <Title>Today</Title>

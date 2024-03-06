@@ -1,3 +1,4 @@
+import { useUserSession } from '@/server/auth/queries';
 import { supabase } from '@/server/provider';
 import type { User } from '@supabase/supabase-js';
 import { useSuspenseQuery } from '@tanstack/react-query';
@@ -21,6 +22,7 @@ const getTodos = async ({ userId, createdAt }: Parameters) => {
 };
 
 export const useGetTodos = (parameters: Parameters) => {
+  const { data: user } = useUserSession();
   return useSuspenseQuery({
     queryFn: () => getTodos(parameters),
     queryKey: TODOS_KEYS.todos(parameters),
