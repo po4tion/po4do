@@ -1,3 +1,3 @@
 export const TODOS_KEYS = {
-  todos: <T>(subKeys: T) => ['todos', subKeys],
+  todos: <T extends QueryKey.Todo>(subKeys: T) => ['todos', subKeys],
 } as const;

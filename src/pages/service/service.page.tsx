@@ -2,6 +2,7 @@ import { withSuspense } from '@/hocs/withSuspense';
 import { useCreateTodo } from '@/server/todos/mutations';
 import { useRemoveTodo } from '@/server/todos/mutations/useRemoveTodo';
 import { useUpdateTodo } from '@/server/todos/mutations/useUpdateTodo';
+import { useGetTodos } from '@/server/todos/queries';
 import { TODOS_KEYS } from '@/server/todos/queries/keys';
 import { useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
@@ -9,34 +10,17 @@ import { Container } from './components/Container';
 import { Title } from './components/Title';
 import { Todo } from './components/Todo';
 import { Write } from './components/Write';
-import { useFetch } from './hooks/useFetch';
-import { getTodayDate } from './utils/getTodayDate';
 
 export const ServicePage = withSuspense(() => {
-  const { todos, getTodoParameters } = useFetch();
+  const { data: todos } = useGetTodos();
   const queryClient = useQueryClient();
   const { mutate: createTodoMutate } = useCreateTodo();
   const [todo, setTodo] = useState('');
 
   const createTodo = () => {
-    if (!user) {
-      alert('로그인이 필요합니다');
-      return;
-    }
-
-    const newTodo: Database.TablesInsert<'todos'> = {
-      userId: user.id,
-      created_at: getTodayDate(),
+    createTodoMutate({
       description: todo,
       status: 'progress',
-    };
-
-    createTodoMutate(newTodo, {
-      onSuccess: () => {
-        queryClient.invalidateQueries({
-          queryKey: TODOS_KEYS.todos(getTodoParameters),
-        });
-      },
     });
   };
 
@@ -79,8 +63,6 @@ export const ServicePage = withSuspense(() => {
       },
     });
   };
-
-  if (todos) throw new Error('에러 발생!');
 
   return (
     <Container>
