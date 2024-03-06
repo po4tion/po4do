@@ -3,7 +3,6 @@ import { useCreateTodo } from '@/server/todos/mutations';
 import { useRemoveTodo } from '@/server/todos/mutations/useRemoveTodo';
 import { useUpdateTodo } from '@/server/todos/mutations/useUpdateTodo';
 import { useGetTodos } from '@/server/todos/queries';
-import { TODOS_KEYS } from '@/server/todos/queries/keys';
 import { useState, type ComponentProps } from 'react';
 import { Container } from './components/Container';
 import { Title } from './components/Title';
@@ -34,14 +33,8 @@ export const ServicePage = withSuspense(() => {
   };
 
   const { mutate: removeTodoMutate } = useRemoveTodo();
-  const removeTodo = (id: Database.TablesUpdate<'todos'>['id']) => {
-    removeTodoMutate(id, {
-      onSuccess: () => {
-        queryClient.invalidateQueries({
-          queryKey: TODOS_KEYS.todos(getTodoParameters),
-        });
-      },
-    });
+  const removeTodo: ComponentProps<typeof Todo.List>['remove'] = (id) => {
+    removeTodoMutate(id);
   };
 
   return (

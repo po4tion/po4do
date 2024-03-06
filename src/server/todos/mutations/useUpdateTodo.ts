@@ -1,5 +1,6 @@
 import { useUserSession } from '@/server/auth/queries';
 import { supabase } from '@/server/provider';
+import { getTodayDate } from '@/utils/getTodayDate';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { TODOS_KEYS } from '../queries/keys';
 
@@ -36,8 +37,8 @@ export const useUpdateTodo = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: TODOS_KEYS.todos({
-          id: '',
-          created_at: '',
+          created_at: getTodayDate(),
+          id: user.id,
         }),
       });
     },
